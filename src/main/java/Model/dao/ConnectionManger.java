@@ -7,11 +7,11 @@ import java.sql.SQLException;
 public class ConnectionManger 
 {
 	// DB接続URL
-	private static final String URL = "jdbc:mysql://127.0.0.1:3306/taskmanage_db?useSSL=false&serverTimezone=UTC";
+	private final String URL = "jdbc:mysql://localhost:3306/taskdb?useSSL=false&serverTimezone=UTC";
 	// DB接続ユーザ名
-	private static final String USER = "taskmanageuser";
+	private final String USER = "taskUser";
 	// DB接続パスワード
-	private static final String PASSWORD = "taskmanagepassword";
+	private final String PASSWORD = "taskPass";
 
 	public ConnectionManger() 
 	{
