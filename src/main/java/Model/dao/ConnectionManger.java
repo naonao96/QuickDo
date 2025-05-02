@@ -7,15 +7,17 @@ import java.sql.SQLException;
 public class ConnectionManger 
 {
 	// DB接続URL
-	private final String URL = "jdbc:mysql://localhost:3306/taskdb?useSSL=false&serverTimezone=UTC";
+	private String _url = "";
 	// DB接続ユーザ名
-	private final String USER = "taskUser";
+	private String _User = "";
 	// DB接続パスワード
-	private final String PASSWORD = "taskPass";
+	private String _Password = "";
 
-	public ConnectionManger() 
+	public ConnectionManger(String url, String user, String password)
 	{
-		
+		this._url = url;
+		this._User = user;
+		this._Password = password;
 	}
 	
 	// クラスのアクセスレベルはprivateにしてしまうとインスタンス化しても外部から呼び出しできない
@@ -23,7 +25,7 @@ public class ConnectionManger
 	public Connection getConnection() throws SQLException, ClassNotFoundException
 	{
 		try {
-			Connection con = DriverManager.getConnection(URL, USER, PASSWORD);
+			Connection con = DriverManager.getConnection(_url, _User, _Password);
 			
 			System.out.println("DB接続成功");
 			return con;
@@ -34,4 +36,5 @@ public class ConnectionManger
 		}
 		return null;
 	}
+	
 }
