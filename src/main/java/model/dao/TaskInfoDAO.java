@@ -1,10 +1,10 @@
-package Model.dao;
+package model.dao;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
 
-import Model.entity.UserInfoBeans;
-import Util.FileControlUtil;
+import model.entity.UserInfoBeans;
+import util.FileControlUtil;
 
 public class TaskInfoDAO {
 	
@@ -22,7 +22,7 @@ public class TaskInfoDAO {
 		
 		try(Connection con = connectionManger.getConnection();)
 		{
-			String query = FileControlUtil.readFile("Sql/selectUserInfo.sql");
+			String query = FileControlUtil.readFile("/sql/selectUserInfo.sql");
 			
 			if (query == null) {
 				System.out.println("SQLファイルの読み込みに失敗しました。");

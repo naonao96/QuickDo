@@ -1,4 +1,4 @@
-package Model.entity;
+package model.entity;
 
 public class UserInfoBeans {
 

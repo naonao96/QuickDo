@@ -1,4 +1,4 @@
-package Controller;
+package controller;
 
 import java.io.IOException;
 
@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import Model.dao.TaskInfoDAO;
-import Model.entity.UserInfoBeans;
+import model.dao.TaskInfoDAO;
+import model.entity.UserInfoBeans;
 
 /**
  * Servlet implementation class LoginServlet
@@ -75,7 +75,7 @@ public class LoginServlet extends HttpServlet {
 		
 		if(loginStatus == true)
 		{
-			RequestDispatcher rd = request.getRequestDispatcher("menu.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/menu.jsp");
 			rd.forward(request, response);
 		}
 		else 
