@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import model.dao.TaskInfoDAO;
 import model.entity.UserInfoBeans;
@@ -47,7 +48,6 @@ public class LoginServlet extends HttpServlet {
 		response.setContentType("text/html; charset=UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		
-		Boolean loginStatus = false; 
 		String errorMessage = "ログインに失敗しました。メールアドレスかパスワードを間違えています。再度入力してください。";
 		
 		String mail = request.getParameter("mail");
@@ -56,7 +56,7 @@ public class LoginServlet extends HttpServlet {
 		TaskInfoDAO dao = new TaskInfoDAO();
 		UserInfoBeans userInfo = new UserInfoBeans();
 		
-		//ユーザ情報の取得
+		//ログイン確認用ユーザ情報の取得
 		try 
 		{
 			userInfo = dao.userSertificate(mail,password);
@@ -66,22 +66,20 @@ public class LoginServlet extends HttpServlet {
 			e.printStackTrace();
 			System.out.println("データの取得に失敗しました");
 		}
-
-		//ログイン情報の確認
-		if("TestMail".equals(mail) && "TestPassword".equals(password)) 
+	
+		if(userInfo.get_mail() == "" && userInfo.get_password() == "")
 		{
-			loginStatus = true;
-		}
-		
-		if(loginStatus == true)
-		{
-			RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/menu.jsp");
+			// ログインに失敗した場合
+			request.setAttribute("error", errorMessage);
+			RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
 			rd.forward(request, response);
 		}
 		else 
 		{
-			response.setCharacterEncoding("UTF-8");			request.setAttribute("error", errorMessage);
-			RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
+			// ログインに成功した場合
+			HttpSession session = request.getSession();
+			session.setAttribute("userName", userInfo.get_userName());
+			RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/menu.jsp");
 			rd.forward(request, response);
 		}
 		

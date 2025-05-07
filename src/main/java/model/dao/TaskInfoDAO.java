@@ -1,6 +1,7 @@
 package model.dao;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 import model.entity.UserInfoBeans;
@@ -29,12 +30,16 @@ public class TaskInfoDAO {
 				return null;
 			}
 			
+			PreparedStatement pstmt = con.prepareStatement(query);
+			pstmt.setString(1, mail);
+			pstmt.setString(2, password);
+			
 			// 一致するユーザの取得を行います
-			ResultSet ret = con.createStatement().executeQuery(query);
+			ResultSet ret = pstmt.executeQuery();
 			
 			while (ret.next()) {
-				userInfo.set_userName(ret.getString("userName"));
-				userInfo.set_mail(ret.getString("mail"));
+				userInfo.set_userName(ret.getString("name"));
+				userInfo.set_mail(ret.getString("mail_address"));
 				userInfo.set_password(ret.getString("password"));
 			}
 			
