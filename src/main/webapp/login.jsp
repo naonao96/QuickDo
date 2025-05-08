@@ -7,15 +7,19 @@
 <meta charset="UTF-8">
 <title>タスク管理システム</title>
 <style>
-.error {
-	color: red;
-	font-weight: bold;
-}
+	body{
+	    background-color: #C0C0C0;
+        font-family: Arial, sans-serif;
+    },
+	.error {
+		color: red;
+		font-weight: bold;
+	}
 </style>
 </head>
 <body>
 	<form action="Login" method="Post">
-		<h1>ログイン画面</h1>
+		<h2>ログイン画面</h2>
 		<br> メールアドレス：<input type="text" name="mail"><br>
 		パスワード：<input type="text" name="password"><br>
 		<% String errorMessage = (String)request.getAttribute("error"); %>
