@@ -53,4 +53,9 @@ public class TaskInfoDAO {
 		return userInfo;
 	}
 	
+	// タスク新規登録を行う
+	public boolean insTaskInfo() 
+	{
+		return false;
+	}
 }

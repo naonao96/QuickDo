@@ -1,6 +1,8 @@
 package controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Date;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import model.dao.TaskInfoDAO;
+import model.entity.TaskInfoBeans;
 import model.entity.UserInfoBeans;
 
 /**
@@ -54,6 +57,8 @@ public class LoginServlet extends HttpServlet {
 		String password = request.getParameter("password");
 		
 		TaskInfoDAO dao = new TaskInfoDAO();
+		
+		TaskInfoBeans taskInfo = new TaskInfoBeans();
 		UserInfoBeans userInfo = new UserInfoBeans();
 		
 		//ログイン確認用ユーザ情報の取得
@@ -66,6 +71,20 @@ public class LoginServlet extends HttpServlet {
 			e.printStackTrace();
 			System.out.println("データの取得に失敗しました");
 		}
+		
+		//DEBUG用：テスト用のタスク情報を作成
+		
+		ArrayList<TaskInfoBeans> taskList = new ArrayList<TaskInfoBeans>();
+		Date datetime = new Date(System.currentTimeMillis());
+		taskInfo.set_taskName("タスク名");
+		taskInfo.set_taskContent("タスク内容");
+		taskInfo.set_taskDeadline(datetime);
+		taskInfo.set_taskStatus("未着手");
+		taskInfo.set_taskPriority("高");
+		taskInfo.set_taskAsignee("担当者");
+		taskList.add(taskInfo);
+		//DEBUG用：テスト用のタスク情報を作成
+		
 	
 		if(userInfo.get_mail() == "" && userInfo.get_password() == "")
 		{
@@ -79,6 +98,7 @@ public class LoginServlet extends HttpServlet {
 			// ログインに成功した場合
 			HttpSession session = request.getSession();
 			session.setAttribute("userName", userInfo.get_userName());
+			request.setAttribute("taskList", taskList);
 			RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/menu.jsp");
 			rd.forward(request, response);
 		}
