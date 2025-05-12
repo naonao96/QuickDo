@@ -6,16 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>タスク管理システム</title>
-<style>
-	body{
-	    background-color: #C0C0C0;
-        font-family: Arial, sans-serif;
-    },
-	.error {
-		color: red;
-		font-weight: bold;
-	}
-</style>
+<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
 	<form action="Login" method="Post">
