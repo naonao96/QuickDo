@@ -1,7 +1,11 @@
 package model.entity;
 
-public class UserInfoBeans {
-
+public class UserInfoBeans 
+{
+	///<summary>
+	/// ユーザID
+	///</summary>
+	private String _userId = "";
 	///<summary>
 	/// ユーザ名
 	///</summary>
@@ -19,28 +23,36 @@ public class UserInfoBeans {
 		
 	}
 	
+	public String get_userId() {
+		return _userId;
+	}
+	
+	public void set_userId(String userId) {
+		this._userId = userId;
+	}
+	
 	public String get_userName() {
 		return _userName;
 	}
 
-	public void set_userName(String _userName) 
+	public void set_userName(String userName) 
 	{
-		this._userName = _userName;
+		this._userName = userName;
 	}
 
 	public String get_mail() {
 		return _mail;
 	}
 
-	public void set_mail(String _mail) {
-		this._mail = _mail;
+	public void set_mail(String mail) {
+		this._mail = mail;
 	}
 
 	public String get_password() {
 		return _password;
 	}
 
-	public void set_password(String _password) {
-		this._password = _password;
+	public void set_password(String password) {
+		this._password = password;
 	}
 }
