@@ -1,4 +1,4 @@
-<%@page import="javax.websocket.Decoder.Text"%>
+<%@page import="jakarta.websocket.Decoder.Text"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
