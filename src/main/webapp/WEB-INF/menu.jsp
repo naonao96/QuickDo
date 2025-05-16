@@ -1,12 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="java.util.*, model.entity.*" %>
+   <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>タスク一覧</title>
-<link rel="stylesheet" type="text/css" href="css/style.css">
-<script type="text/javascript" src="js/modalScript.js"></script>
+	<meta charset="UTF-8">
+	<title>タスク一覧</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<script type="text/javascript" src="js/modalScript.js"></script>
 </head>
 <body>	
 	<div class="header">
@@ -38,13 +39,19 @@
             '<%= task.get_taskDeadline() %>', 
             '<%= task.get_taskStatus() %>', 
             '<%= task.get_taskPriority() %>', 
-            '<%= task.get_taskAsignee() %>')">
-                <td><%= task.get_taskName() %></td>
-                <td><%= task.get_taskContent() %></td>
-                <td><%= task.get_taskDeadline() %></td>
-                <td><%= task.get_taskStatus() %></td>
-                <td><%= task.get_taskPriority() %></td>
-                <td><%= task.get_taskAsignee() %></td>
+            '<%=task.get_taskAssignee()%>')">
+                <td><%=task.get_taskName()%></td>
+                <td><%=task.get_taskContent()%></td>
+                <td><%=task.get_taskDeadline()%></td>
+                <td><%=task.get_taskStatus()%></td>
+                <td>
+    				<c:choose>
+        				<c:when test="${task.get_taskPriority() == 'low'}">低</c:when>
+      					<c:when test="${task.get_taskPriority() == 'medium'}">中</c:when>
+      					<c:when test="${task.get_taskPriority() == 'high'}">高</c:when>
+    				</c:choose>
+				</td>
+                <td><%=task.get_taskAssignee()%></td>
             </tr>
             <%
                     }

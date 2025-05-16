@@ -1,1 +1,1 @@
-SELECT * FROM mst_tasks WHERE user_id = ?;
+SELECT * FROM mst_task_list WHERE user_id = ?;

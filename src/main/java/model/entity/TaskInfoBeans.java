@@ -8,6 +8,10 @@ import java.util.Date;
 public class TaskInfoBeans {
 	
 	///<summary>
+	/// タスクID
+	///</summary>
+	private String _taskId = "";
+	///<summary>
 	/// タスク名
 	///</summary>
 	private String _taskName = "";
@@ -30,13 +34,22 @@ public class TaskInfoBeans {
 	///<summary>
 	/// 担当者
 	///</summary>
-	private String _taskAsignee;
+	private String _taskAssignee;
 	
 	
 	public TaskInfoBeans() {
 
 	}
 
+	public String get_taskId() {
+		return _taskId;
+	}
+
+	public void set_taskId(String _taskId) {
+		this._taskId = _taskId;
+	}
+
+	
 	public String get_taskName() {
 		return _taskName;
 	}
@@ -66,7 +79,12 @@ public class TaskInfoBeans {
 	}
 
 	public void set_taskStatus(String taskStatus) {
-		this._taskStatus = taskStatus;
+		this._taskStatus = switch (taskStatus){
+			case "0" -> "notStarted";
+			case "1" -> "inProgress";
+			case "2" -> "done";
+			default -> "";
+		};
 	}
 	
 	public String get_taskPriority() {
@@ -74,14 +92,20 @@ public class TaskInfoBeans {
 	}
 
 	public void set_taskPriority(String taskPriority) {
-		this._taskPriority = taskPriority;
+		this._taskPriority = switch (taskPriority){
+			case "0" -> "low";
+			case "1" -> "medium";
+			case "2" -> "high";
+			default -> "";
+		};
 	}
-	public String get_taskAsignee() {
-		return _taskAsignee;
+	
+	public String get_taskAssignee() {
+		return _taskAssignee;
 	}
 
-	public void set_taskAsignee(String taskAsignee) {
-		this._taskAsignee = taskAsignee;
+	public void set_taskAssignee(String taskAssignee) {
+		this._taskAssignee = taskAssignee;
 	}
 	
 	

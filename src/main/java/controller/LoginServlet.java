@@ -66,7 +66,10 @@ public class LoginServlet extends HttpServlet {
 			// ログイン確認用ユーザ情報の取得
 			userInfo = dao.revUserSertificate(mail, password);
 			// タスク情報の取得
-			if (userInfo != null) taskList = dao.revTaskList(userInfo.get_userId());
+			if (userInfo != null) 
+				taskList = dao.revTaskList(userInfo.get_userId());
+			
+			
 		}
 		catch(Exception e) 
 		{
