@@ -13,10 +13,10 @@
   - データベースを利用した永続化
 
 ## 技術スタック
-- **バックエンド:** Java / Spring Boot (または適用技術)
+- **バックエンド:** Java
 - **フロントエンド:** HTML / CSS / JavaScript
-- **データベース:** MySQL / PostgreSQL / SQLite
-- **その他:** Maven / Docker (オプション)
+- **データベース:** MySQL
+- **その他:** Maven
 
 ## 環境構築手順
 1. リポジトリをクローン:
