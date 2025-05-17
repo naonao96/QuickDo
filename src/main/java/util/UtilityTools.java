@@ -4,7 +4,13 @@ import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
-public class FileControlUtil {
+public class UtilityTools {
+	
+	/**
+	 * エラーメッセージ一覧
+	 */
+	public static final String LOGIN_ERROR = "ログインに失敗しました。メールアドレスかパスワードを間違えています。再度入力してください。";
+	
 	
 	/**
 	 * 指定されたファイルパスの内容を読み込み、文字列として返します。
@@ -15,7 +21,7 @@ public class FileControlUtil {
 	{
 		StringBuilder contentBuilder = new StringBuilder();
 
-		try (InputStream inputStream = FileControlUtil.class.getResourceAsStream(filePath)) 
+		try (InputStream inputStream = UtilityTools.class.getResourceAsStream(filePath)) 
 		{
            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
            
@@ -50,5 +56,13 @@ public class FileControlUtil {
 			return false;
 		}
 		return true;
+	}
+	
+	public static boolean loginCheck(String userName, String password)
+	{
+		if (strHasValue(userName) && strHasValue(password)) {
+			return true;
+		}
+		return false;
 	}
 }

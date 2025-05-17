@@ -8,7 +8,7 @@ import java.util.List;
 
 import model.entity.TaskInfoBeans;
 import model.entity.UserInfoBeans;
-import util.FileControlUtil;
+import util.UtilityTools;
 
 public class TaskManagementDAO {
 	
@@ -26,7 +26,7 @@ public class TaskManagementDAO {
 		
 		try(Connection con = connectionManger.getConnection();)
 		{
-			String query = FileControlUtil.readFile("/sql/selectUserInfo.sql");
+			String query = UtilityTools.readFile("/sql/selectUserInfo.sql");
 			
 			if (query == null) {
 				System.out.println("SQLファイルの読み込みに失敗しました。");
@@ -64,7 +64,7 @@ public class TaskManagementDAO {
 		List<TaskInfoBeans> taskList = new ArrayList<TaskInfoBeans>();
 		try(Connection con = connectionManger.getConnection();)
 		{
-			String query = FileControlUtil.readFile("/sql/selectTaskInfo.sql");
+			String query = UtilityTools.readFile("/sql/selectTaskInfo.sql");
 			
 			if (query == null) {
 				System.out.println("SQLファイルの読み込みに失敗しました。");
@@ -79,13 +79,13 @@ public class TaskManagementDAO {
 			
 			while (ret.next()) {
 				TaskInfoBeans taskInfo = new TaskInfoBeans();
-				taskInfo.set_taskId(ret.getString("task_id"));
-				taskInfo.set_taskName(ret.getString("task_name"));
-				taskInfo.set_taskContent(ret.getString("task_contents"));
-				taskInfo.set_taskDeadline(ret.getDate("task_deadline"));
-				taskInfo.set_taskStatus(ret.getString("task_status"));
-				taskInfo.set_taskPriority(ret.getString("task_priority"));
-				taskInfo.set_taskAssignee(ret.getString("task_assignee"));
+				taskInfo.setTaskId(ret.getString("task_id"));
+				taskInfo.setTaskName(ret.getString("task_name"));
+				taskInfo.setTaskContent(ret.getString("task_contents"));
+				taskInfo.setTaskDeadline(ret.getDate("task_deadline"));
+				taskInfo.setTaskStatus(ret.getString("task_status"));
+				taskInfo.setTaskPriority(ret.getString("task_priority"));
+				taskInfo.setTaskAssignee(ret.getString("task_assignee"));
 				
 				taskList.add(taskInfo);
 			}

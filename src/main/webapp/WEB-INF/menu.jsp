@@ -11,9 +11,9 @@
 </head>
 <body>	
 	<div class="header">
-		<h2 class="title">タスク一覧</h2>
+		<h2 class="title">現在のタスク一覧</h2>
 		<div class="loginDisp">
-			<%=session.getAttribute("userName")%>さん
+			${userName}さん:本日もお疲れ様です。
 		</div>
     </div>
     <table>
@@ -28,41 +28,34 @@
             </tr>
         </thead>
         <tbody>
-            <%
-                List<TaskInfoBeans> tasks = (List<TaskInfoBeans>) request.getAttribute("taskList");
-                if (tasks != null && !tasks.isEmpty()) {
-                    for (TaskInfoBeans task : tasks) {
-            %>
-            <tr onclick="openModal(
-            '<%= task.get_taskName() %>', 
-            '<%= task.get_taskContent() %>',
-            '<%= task.get_taskDeadline() %>', 
-            '<%= task.get_taskStatus() %>', 
-            '<%= task.get_taskPriority() %>', 
-            '<%=task.get_taskAssignee()%>')">
-                <td><%=task.get_taskName()%></td>
-                <td><%=task.get_taskContent()%></td>
-                <td><%=task.get_taskDeadline()%></td>
-                <td><%=task.get_taskStatus()%></td>
-                <td>
-    				<c:choose>
-        				<c:when test="${task.get_taskPriority() == 'low'}">低</c:when>
-      					<c:when test="${task.get_taskPriority() == 'medium'}">中</c:when>
-      					<c:when test="${task.get_taskPriority() == 'high'}">高</c:when>
-    				</c:choose>
-				</td>
-                <td><%=task.get_taskAssignee()%></td>
-            </tr>
-            <%
-                    }
-                } else {
-            %>
-            <tr>
-                <td colspan="5">タスクがありません。</td>
-            </tr>
-            <%
-                }
-            %>
+        	<c:forEach items="${taskList}" var="task">
+            	<tr onclick="openModal(
+            	'${task.taskName}', 
+            	'${task.taskContent}',
+            	'${task.taskDeadline}', 
+            	'${task.taskStatus}', 
+            	'${task.taskPriority}', 
+            	'${task.taskAssignee}')">
+                	<td>${task.taskName}</td>
+                	<td>${task.taskContent}</td>
+                	<td>${task.taskDeadline}</td>
+                	<td>
+                		<c:choose>
+                			<c:when test="${task.taskStatus eq 'notStarted'}">未着手</c:when>
+                			<c:when test="${task.taskStatus eq 'inProgress'}">進行中</c:when>
+                			<c:when test="${task.taskStatus eq 'done'}">完了</c:when>
+                		</c:choose>
+                	</td>
+                	<td>
+    					<c:choose>
+        					<c:when test="${task.taskPriority eq 'low'}">低</c:when>
+      						<c:when test="${task.taskPriority eq 'medium'}">中</c:when>
+      						<c:when test="${task.taskPriority eq 'high'}">高</c:when>
+    					</c:choose>
+					</td>
+                	<td>${task.taskAssignee}</td>
+            	</tr>
+			</c:forEach>
         </tbody>
     </table>
 

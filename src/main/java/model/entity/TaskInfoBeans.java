@@ -10,76 +10,76 @@ public class TaskInfoBeans {
 	///<summary>
 	/// タスクID
 	///</summary>
-	private String _taskId = "";
+	private String taskId = "";
 	///<summary>
 	/// タスク名
 	///</summary>
-	private String _taskName = "";
+	private String taskName = "";
 	///<summary>
 	/// タスク内容
 	///</summary>
-	private String _taskContent;
+	private String taskContent;
 	///<summary>
 	/// 期限
 	///</summary>
-	private Date _taskDeadline;
+	private Date taskDeadline;
 	///<summary>
 	/// 状態
 	///</summary>
-	private String _taskStatus;
+	private String taskStatus;
 	///<summary>
 	/// 優先度
 	///</summary>
-	private String _taskPriority;	
+	private String taskPriority;	
 	///<summary>
 	/// 担当者
 	///</summary>
-	private String _taskAssignee;
+	private String taskAssignee;
 	
 	
 	public TaskInfoBeans() {
 
 	}
 
-	public String get_taskId() {
-		return _taskId;
+	public String getTaskId() {
+		return taskId;
 	}
 
-	public void set_taskId(String _taskId) {
-		this._taskId = _taskId;
+	public void setTaskId(String taskId) {
+		this.taskId = taskId;
 	}
 
 	
-	public String get_taskName() {
-		return _taskName;
+	public String getTaskName() {
+		return taskName;
 	}
 
-	public void set_taskName(String _taskName) {
-		this._taskName = _taskName;
+	public void setTaskName(String taskName) {
+		this.taskName = taskName;
 	}
 
-	public String get_taskContent() {
-		return _taskContent;
+	public String getTaskContent() {
+		return taskContent;
 	}
 
-	public void set_taskContent(String taskContent) {
-		this._taskContent = taskContent;
+	public void setTaskContent(String taskContent) {
+		this.taskContent = taskContent;
 	}
 
-	public Date get_taskDeadline() {
-		return _taskDeadline;
+	public Date getTaskDeadline() {
+		return taskDeadline;
 	}
 
-	public void set_taskDeadline(Date taskDeadline) {
-		this._taskDeadline = taskDeadline;
+	public void setTaskDeadline(Date taskDeadline) {
+		this.taskDeadline = taskDeadline;
 	}
 
-	public String get_taskStatus() {
-		return _taskStatus;
+	public String getTaskStatus() {
+		return taskStatus;
 	}
 
-	public void set_taskStatus(String taskStatus) {
-		this._taskStatus = switch (taskStatus){
+	public void setTaskStatus(String taskStatus) {
+		this.taskStatus = switch (taskStatus){
 			case "0" -> "notStarted";
 			case "1" -> "inProgress";
 			case "2" -> "done";
@@ -87,12 +87,12 @@ public class TaskInfoBeans {
 		};
 	}
 	
-	public String get_taskPriority() {
-		return _taskPriority;
+	public String getTaskPriority() {
+		return taskPriority;
 	}
 
-	public void set_taskPriority(String taskPriority) {
-		this._taskPriority = switch (taskPriority){
+	public void setTaskPriority(String taskPriority) {
+		this.taskPriority = switch (taskPriority){
 			case "0" -> "low";
 			case "1" -> "medium";
 			case "2" -> "high";
@@ -100,12 +100,12 @@ public class TaskInfoBeans {
 		};
 	}
 	
-	public String get_taskAssignee() {
-		return _taskAssignee;
+	public String getTaskAssignee() {
+		return taskAssignee;
 	}
 
-	public void set_taskAssignee(String taskAssignee) {
-		this._taskAssignee = taskAssignee;
+	public void setTaskAssignee(String taskAssignee) {
+		this.taskAssignee = taskAssignee;
 	}
 	
 	
