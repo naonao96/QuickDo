@@ -47,5 +47,5 @@
 このプロジェクトは [MIT License](LICENSE) のもと提供されています。
 
 ## 作者
-- **Naoya** - [GitHub](https://github.com/naoya)
+- **naonao96** - [GitHub](https://github.com/naoya)
 ```
