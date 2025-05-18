@@ -50,21 +50,23 @@ public class LoginServlet extends HttpServlet {
 		{
 			// ユーザ情報の取得
 			userInfo = dao.revUserSertificate(request.getParameter("mail"), request.getParameter("password"));
-			// タスク情報の取得(タスクデータはユーザIDに紐づいている（親子関係）)
+			// タスク情報初期表示データ取得
+			// (タスクデータはユーザIDに紐づいている（親子関係）)
 			if (userInfo != null) 
-				taskList = dao.revTaskList(userInfo.get_userId());
+				taskList = dao.revTaskList(userInfo.getUserId());
 		}
 		catch(Exception e) 
 		{
-			e.printStackTrace();
-			System.out.println("データの取得に失敗しました");
+			request.setAttribute("error", UtilityTools.DATA_FETCH_ERROR);
+			RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
+			rd.forward(request, response);
 		}
 		
 		if(UtilityTools.loginCheck(request.getParameter("mail"), request.getParameter("password")) == true)
 		{
 			// ログインに成功した場合
 			HttpSession session = request.getSession();
-			session.setAttribute("userName", userInfo.get_userName());
+			session.setAttribute("userName", userInfo.getUserName());
 			request.setAttribute("taskList", taskList);
 			RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/menu.jsp");
 			rd.forward(request, response);

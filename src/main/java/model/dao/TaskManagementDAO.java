@@ -41,10 +41,10 @@ public class TaskManagementDAO {
 			ResultSet ret = pstmt.executeQuery();
 			
 			while (ret.next()) {
-				userInfo.set_userId(ret.getString("user_id"));
-				userInfo.set_userName(ret.getString("name"));
-				userInfo.set_mail(ret.getString("mail_address"));
-				userInfo.set_password(ret.getString("password"));
+				userInfo.setUserId  (ret.getString("user_id"));
+				userInfo.setUserName(ret.getString("name"));
+				userInfo.setMail    (ret.getString("mail_address"));
+				userInfo.setPassword(ret.getString("password"));
 			}
 			
 			con.close();
@@ -79,11 +79,11 @@ public class TaskManagementDAO {
 			
 			while (ret.next()) {
 				TaskInfoBeans taskInfo = new TaskInfoBeans();
-				taskInfo.setTaskId(ret.getString("task_id"));
-				taskInfo.setTaskName(ret.getString("task_name"));
-				taskInfo.setTaskContent(ret.getString("task_contents"));
-				taskInfo.setTaskDeadline(ret.getDate("task_deadline"));
-				taskInfo.setTaskStatus(ret.getString("task_status"));
+				taskInfo.setTaskId      (ret.getString("task_id"));
+				taskInfo.setTaskName    (ret.getString("task_name"));
+				taskInfo.setTaskContent (ret.getString("task_contents"));
+				taskInfo.setTaskDeadline(ret.getDate  ("task_deadline"));
+				taskInfo.setTaskStatus  (ret.getString("task_status"));
 				taskInfo.setTaskPriority(ret.getString("task_priority"));
 				taskInfo.setTaskAssignee(ret.getString("task_assignee"));
 				
@@ -101,8 +101,41 @@ public class TaskManagementDAO {
 	}
 	
 	// タスク新規登録を行う
-	public boolean insTaskInfo() 
+	public boolean insTaskInfo(UserInfoBeans userInfo, TaskInfoBeans taskInfo) 
 	{
+		ConnectionManger connectionManger = new ConnectionManger(_url, _User, _Password);
+		try(Connection con = connectionManger.getConnection();)
+		{
+			String query = UtilityTools.readFile("/sql/insertTaskInfo.sql");
+			
+			if (query == null) {
+				System.out.println("SQLファイルの読み込みに失敗しました。");
+				return false;
+			}
+			
+			PreparedStatement pstmt = con.prepareStatement(query);
+			
+			pstmt.setString(1, userInfo.getUserId());
+			pstmt.setString(2, taskInfo.getTaskName());
+			pstmt.setString(3, taskInfo.getTaskContent());
+			pstmt.setDate  (4, (java.sql.Date)taskInfo.getTaskDeadline());
+			pstmt.setString(5, taskInfo.getTaskStatus());
+			pstmt.setString(6, taskInfo.getTaskPriority());
+			pstmt.setString(7, taskInfo.getTaskAssignee());
+			
+			int result = pstmt.executeUpdate();
+			
+			if (result > 0) {
+				return true;
+			}
+			
+			con.close();
+		}
+		catch(Exception e) 
+		{
+			e.printStackTrace();
+			System.out.println("データ取得失敗");
+		}
 		return false;
 	}
 	

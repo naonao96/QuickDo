@@ -5,54 +5,54 @@ public class UserInfoBeans
 	///<summary>
 	/// ユーザID
 	///</summary>
-	private String _userId = "";
+	private String userId = "";
 	///<summary>
 	/// ユーザ名
 	///</summary>
-	private String _userName = "";
+	private String userName = "";
 	///<summary>
 	/// メールアドレス
 	///</summary>
-	private String _mail = "";
+	private String mail = "";
 	///<summary>
 	/// パスワード
 	///</summary>
-	private String _password = "";
+	private String password = "";
 	
 	public UserInfoBeans() {
 		
 	}
 	
-	public String get_userId() {
-		return _userId;
+	public String getUserId() {
+		return userId;
 	}
 	
-	public void set_userId(String userId) {
-		this._userId = userId;
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 	
-	public String get_userName() {
-		return _userName;
+	public String getUserName() {
+		return userName;
 	}
 
-	public void set_userName(String userName) 
+	public void setUserName(String userName) 
 	{
-		this._userName = userName;
+		this.userName = userName;
 	}
 
-	public String get_mail() {
-		return _mail;
+	public String getMail() {
+		return mail;
 	}
 
-	public void set_mail(String mail) {
-		this._mail = mail;
+	public void setMail(String mail) {
+		this.mail = mail;
 	}
 
-	public String get_password() {
-		return _password;
+	public String getPassword() {
+		return password;
 	}
 
-	public void set_password(String password) {
-		this._password = password;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 }

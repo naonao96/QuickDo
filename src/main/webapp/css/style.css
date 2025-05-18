@@ -1,6 +1,6 @@
 @charset "UTF-8";
 body {
-    background-color: #C0C0C0;
+    background-color: #f2f2f2;
     font-family: Arial, sans-serif;
 }
 table {
@@ -11,9 +11,7 @@ th, td {
     border: 1px solid #000;
     padding: 8px;
     text-align: left;
-}
-th {
-    background-color: #f2f2f2;
+	font-size: 15px;
 }
 .error {
 	color: red;
@@ -26,12 +24,20 @@ th {
 	padding: 10px;
 }
 .title{
-    text-align: left;
-    margin: 0;
+	color: #000000;
+    font-family: "Rodin NTLG";
+    line-height: 1.2;
+    margin-bottom: 10px;
+    font-size: 25px;
+	font-weight: 500;
 }
 .loginDisp{
-    text-align: right;
-    margin: 0;
+	color: #000000;
+	font-family: "Rodin NTLG";
+	line-height: 1.2;
+	margin-bottom: 10px;
+	font-size: 15px;
+	font-weight: 500;
 }
 .modal {
     display: none;
@@ -62,4 +68,18 @@ th {
     color: black;
     text-decoration: none;
     cursor: pointer;
+}
+.btn-right-design{
+	color: white;
+	box-shadow: 0 3px 5px rgba(0, 0, 0, .3);
+	background-color: #eb6100;
+	border: 2px solid #b84c00;
+	padding: 0.5rem 0.5rem;
+	cursor: pointer;
+	transition: all .3s;
+	text-align: center;
+	vertical-align: middle;
+	letter-spacing:.1rem;
+	border-radius: .5rem;
+	
 }

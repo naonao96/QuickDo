@@ -79,12 +79,7 @@ public class TaskInfoBeans {
 	}
 
 	public void setTaskStatus(String taskStatus) {
-		this.taskStatus = switch (taskStatus){
-			case "0" -> "notStarted";
-			case "1" -> "inProgress";
-			case "2" -> "done";
-			default -> "";
-		};
+		this.taskStatus = taskStatus;
 	}
 	
 	public String getTaskPriority() {
@@ -92,12 +87,7 @@ public class TaskInfoBeans {
 	}
 
 	public void setTaskPriority(String taskPriority) {
-		this.taskPriority = switch (taskPriority){
-			case "0" -> "low";
-			case "1" -> "medium";
-			case "2" -> "high";
-			default -> "";
-		};
+		this.taskPriority = taskPriority;
 	}
 	
 	public String getTaskAssignee() {
