@@ -1,8 +1,6 @@
 package controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -10,7 +8,6 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-import model.entity.TaskInfoBeans;
 import util.UtilityTools;
 
 @WebServlet("/menu")
@@ -43,10 +40,9 @@ public class MenuServlet extends HttpServlet {
 		
 		try {			
 			//タスクの取得機能
-			List<TaskInfoBeans> taskList = new ArrayList<TaskInfoBeans>();
+			//List<TaskInfoBeans> taskList = new ArrayList<TaskInfoBeans>();
 			
 			//タスクの登録機能
-			
 			
 			//タスクの更新機能
 			

@@ -30,14 +30,14 @@
         <tbody>
         	<c:forEach items="${taskList}" var="task">
             	<tr onclick="
-            	document.getElementById('ModalWindow').dataset.mode='edit';
             	openModal(
-            	'${task.taskName}', 
-            	'${task.taskContent}',
-            	'${task.taskDeadline}', 
-            	'${task.taskStatus}', 
-            	'${task.taskPriority}', 
-            	'${task.taskAssignee}')">
+            	 '${task.taskName}',
+            	 '${task.taskContent}',
+            	 '${task.taskDeadline}',
+            	 '${task.taskStatus}',
+            	 '${task.taskPriority}',
+            	 '${task.taskAssignee}',
+            	 'edit')">
                 	<td>${task.taskName}</td>
                 	<td>${task.taskContent}</td>
                 	<td>${task.taskDeadline}</td>
@@ -61,8 +61,8 @@
         </tbody>
     </table>
     <br>
-    <button onclick="document.getElementById('ModalWindow').dataset.mode='add';openModal()" type="submit"class="btn-right-design">+ Add Task</button>
-	<%-- Modal インクルード --%>
-    <jsp:include page="TaskModal.jsp" />
+    <button onclick="openModal('','','','','','','add')" type="submit"class="btn-right-design">+ Add Task</button>
+	<!-- ModalWindowが読み込まれる前にJavascriptが実行されるとエラーになるので、JSPのincludeを使って読み込む -->
+	<!--<jsp:include page="TaskModal.jsp" />-->
 </body>
 </html>

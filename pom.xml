@@ -52,4 +52,5 @@
       </plugin>
     </plugins>
   </build>
+  <name>TaskManagementSystem</name>
 </project>

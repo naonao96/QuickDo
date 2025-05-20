@@ -18,7 +18,6 @@
         <span class="close" onclick="closeModal()">&times;</span>
         <h2><%= title %></h2>
         <form action="<%= action %>" method="post">
-            <input type="hidden" id="taskId" name="taskId">
             <p>
                 <label for="taskName">タスク名:</label>
                 <input type="text" id="taskName" name="taskName">
