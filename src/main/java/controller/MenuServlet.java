@@ -28,14 +28,19 @@ public class MenuServlet extends HttpServlet {
 		response.setContentType("text/html; charset=UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		
+		if(request.getParameter("mode") != null) {
+			request.getRequestDispatcher("/TaskModal.jsp").forward(request, response);
+			return;
+		}
+		
 		//ログインチェック
 		if(UtilityTools.loginCheck(request.getParameter("mail"), request.getParameter("password")) == true) {
 			//ログイン成功
-			request.getRequestDispatcher("WEB-INF/menu.jsp").forward(request, response);
+			request.getRequestDispatcher("/WEB-INF/menu.jsp").forward(request, response);
 		} else {
 			//ログイン失敗
 			request.setAttribute("errorMessage", UtilityTools.LOGIN_ERROR);
-			request.getRequestDispatcher("WEB-INF/login.jsp").forward(request, response);
+			request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
 		}
 		
 		try {			
@@ -49,10 +54,6 @@ public class MenuServlet extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		
-		
-
 	}
 
 }

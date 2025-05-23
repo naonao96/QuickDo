@@ -27,21 +27,30 @@ function openModal(taskName, taskContents, taskDeadline, taskStatus, taskPriorit
 // TaskModal.jspをロードする関数
 // TODO:この関数はまだちゃんと理解できたわけではない...
 function loadTaskModal(mode) {
-    var xhr = new XMLHttpRequest();
-    xhr.open('GET', 'WEB-INF/TaskModal.jsp?mode=' + encodeURIComponent(mode), true);
-    xhr.onload = function () {
-        if (xhr.status >= 200 && xhr.status < 300) {
-            // modal-contentの中身をTaskModal.jspの内容で更新
-            var modalContent = document.querySelector('#ModalWindow .modal-content');
-            modalContent.innerHTML = xhr.responseText;
-        } else {
-            console.error('TaskModal.jspのロードに失敗しました。');
-        }
+    var rXmlReq = new XMLHttpRequest();
+    rXmlReq.open('POST', '/TaskManagementSystem/TaskModal.jsp?mode=' + encodeURIComponent(mode), true);
+	
+	rXmlReq.onload = function () {
+		// レスポンスが正常な場合、ModalWindowのコンテンツを表示
+		if (rXmlReq.status == 200) {
+		    var modalContent = document.querySelector('#ModalWindow .modal-content');
+		    modalContent.innerHTML = rXmlReq.responseText;
+		} else {
+		    console.error('TaskModal.jspのロードに失敗しました。');
+		}
+	};
+	
+    rXmlReq.onerror = function () {
+        console.error('TaskModal.jspのロードに失敗しました。ステータスコード:' + rXmlReq.status + ',レスポンス:' + rXmlReq.responseText);
     };
-    xhr.onerror = function () {
-        console.error('TaskModal.jspのロードに失敗しました。');
-    };
-    xhr.send();
+	
+	rXmlReq.onreadystatechange = function() {
+	  console.log("readyState: " + rXmlReq.readyState);
+	  if (rXmlReq.readyState === 4) {
+	    console.log("status: " + rXmlReq.status);
+	  }
+	};
+    rXmlReq.send();
 }
 
 // タスク編集画面を閉じる
