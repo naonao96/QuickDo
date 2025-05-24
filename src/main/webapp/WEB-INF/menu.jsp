@@ -62,7 +62,8 @@
     </table>
     <br>
     <button onclick="openModal('','','','','','','add')" type="submit"class="btn-right-design">+ Add Task</button>
-	<!-- ModalWindowが読み込まれる前にJavascriptが実行されるとエラーになるので、JSPのincludeを使って読み込む -->
-	<!--<jsp:include page="/TaskModal.jsp" />-->
+    <!-- Modal画面をTaskModal.jspから下記にロードする -->
+    <div id="ModalWindow" class="modal">
+    </div>
 </body>
 </html>
