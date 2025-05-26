@@ -68,13 +68,12 @@ span {
     font-size: 28px;
     font-weight: bold;
 }
-.close:hover,
-.close:focus {
+.close:hover,.close:focus {
     color: black;
     text-decoration: none;
     cursor: pointer;
 }
-.btn-right-design{
+.btn-right-design, .btn-left-design{
 	color: white;
 	box-shadow: 0 3px 5px rgba(0, 0, 0, .3);
 	background-color: #eb6100;
@@ -87,6 +86,16 @@ span {
 	letter-spacing:.1rem;
 	border-radius: .5rem;
 }
+.btn-right-design{
+	
+}
+.btn-left-design{
+
+}
 .btn-submit-design{
 	margin-top:10px;
+}
+.container{
+	display: flex;
+	justify-content: space-between;
 }

@@ -69,6 +69,27 @@ function loadTaskModal(mode, callback) {
     rXmlReq.send();
 }
 
+// タスク削除ボタンをクリックしたときの処理
+function deleteTask(){
+	var taskId = document.getElementById("taskId").value;
+	
+	if (confirm("このタスクを削除しますか？")){
+		fetch('deleteTask?taskId=' + encodeURIComponent(taskId), {
+			method: 'POST',
+			})
+		.then(response => {
+			if (response.ok){
+				alert("タスクを削除しました。");
+				closeModal();
+				window.location.reload();
+			}
+			else{
+				alert("タスクの削除に失敗しました。");
+			}
+		})
+	}
+}
+
 // タスク編集画面を閉じる
 function closeModal() {
 	var modal = document.getElementById("ModalWindow");

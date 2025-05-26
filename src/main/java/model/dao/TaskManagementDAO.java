@@ -196,8 +196,35 @@ public class TaskManagementDAO {
 	}
 	
 	// タスク削除を行う
-	public boolean delTaskInfo() 
-	{
+	public boolean delTaskInfo(String taskId) {	
+		ConnectionManger connectionManger = new ConnectionManger(_url, _User, _Password);
+		try(Connection con = connectionManger.getConnection();)
+		{
+			String query = UtilityTools.readFile("/sql/deleteTaskInfo.sql");
+			
+			if (query == null) {
+				System.out.println("SQLファイルの読み込みに失敗しました。");
+				return false;
+			}
+			
+			PreparedStatement pstmt = con.prepareStatement(query);
+			
+			// パラメータの設定
+			pstmt.setString(1, taskId);
+			
+			int result = pstmt.executeUpdate();
+			
+			if (result > 0) {
+				return true;
+			}
+			
+			con.close();
+		}
+		catch(Exception e) 
+		{
+			e.printStackTrace();
+			System.out.println("データ更新失敗");
+		}
 		return false;
 	}
 }

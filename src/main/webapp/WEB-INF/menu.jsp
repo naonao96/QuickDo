@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="java.util.*, model.entity.*" %>
-   <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,6 +8,7 @@
 	<title>タスク一覧</title>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<script type="text/javascript" src="js/modalScript.js"></script>
+	<script type="text/javascript" src="js/menuScript.js"></script>
 </head>
 <body>	
 	<div class="header">
@@ -63,7 +64,10 @@
         </tbody>
     </table>
     <br>
-    <button onclick="openModal('','','','','','','','add')" type="submit"class="btn-right-design">+ Add Task</button>
+    <div class="container">
+        <button onclick="openModal('','','','','','','','add')" type="submit"class="btn-right-design">タスク追加</button>
+    	<button onclick="logout()" type="submit"class="btn-left-design">ログアウト</button>
+    </div>
     <!-- Modal画面をTaskModal.jspから下記にロードする -->
     <div id="ModalWindow" class="modal">
     </div>

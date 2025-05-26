@@ -1,6 +1,6 @@
-<%@page import="jakarta.websocket.Decoder.Text"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,20 +9,17 @@
 <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
-	<form action="Login" method="Post">
-		<h2>ログイン画面</h2>
-		<br> メールアドレス：<input type="text" name="mail"><br>
-		パスワード：<input type="text" name="password"><br>
-		<% String errorMessage = (String)request.getAttribute("error"); %>
-		<%
-			if(errorMessage != null)
-			{
-		%>
-		<p class="error"><%= errorMessage %></p>
-		<%
-			} 
-		%>
-		<input type="submit" value="登録">
+	<form action="login" method="Post">
+		<h2>ログイン画面</h2><br>
+		メールアドレス：<input type="text" name="mail" required="required"><br>
+		パスワード：<input type="text" name="password" required="required"><br>
+		<c:set var="errorMessage" value="${requestScope.error}"/>
+		<c:choose>
+			<c:when test="${errorMessage != null}">
+				<p class="error">${errorMessage}</p>
+			</c:when>
+		</c:choose>
+		<input type="submit" class="btn-right-design" value="ログイン">
 	</form>
 </body>
 </html>

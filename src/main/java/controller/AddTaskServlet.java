@@ -29,6 +29,8 @@ public class AddTaskServlet extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
+		
 		TaskManagementDAO dao = new TaskManagementDAO();
 		HttpSession session = request.getSession();
 		UserInfoBeans userInfo = (UserInfoBeans)session.getAttribute("userInfo");
@@ -58,7 +60,7 @@ public class AddTaskServlet extends HttpServlet {
 		if(UtilityTools.loginCheck(userInfo.getMail(), userInfo.getPassword()) == true)
 		{
 			// ログインに成功した場合
-			request.getRequestDispatcher("WEB-INF/menu.jsp").forward(request, response);
+			response.sendRedirect("menu");
 		}
 		else 
 		{

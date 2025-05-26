@@ -1,4 +1,3 @@
-<%-- TaskModal.jsp --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <link rel="stylesheet" type="text/css" href="css/style.css">
@@ -42,6 +41,10 @@
 	        <label for="taskAssignee">担当者</label><br>
 	        <input type="text" id="taskAssignee" name="taskAssignee"><br>
 	        <button type="submit" class="btn-submit-design">${buttonText}</button>
+	        <c:if test="${mode == 'edit'}">
+           		<button type="button" class="btn-delete-design" onclick="deleteTask()">削除</button>
+           	</c:if>
         </span>
     </form>
+
 </div>

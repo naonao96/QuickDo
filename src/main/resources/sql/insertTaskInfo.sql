@@ -10,7 +10,7 @@ INSERT INTO mst_task_list (
     ?,
     ?,
     ?,
-    STR_TO_DATE(?, '%Y-%m-%d'),
+	STR_TO_DATE(NULLIF(?, ''), '%Y-%m-%d'),
     ?,
     ?,
     ?
