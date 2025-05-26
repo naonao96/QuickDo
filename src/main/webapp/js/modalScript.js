@@ -1,10 +1,13 @@
 // タスク編集画面を開く
-function openModal(taskName, taskContents, taskDeadline, taskStatus, taskPriority, taskAssignee, mode) {	
+function openModal(taskId, taskName, taskContents, taskDeadline, taskStatus, taskPriority, taskAssignee, mode) {	
 	console.log("mode: " + mode);
+	
+	// モードが指定されていない場合はデフォルトで追加モードとする
 	loadTaskModal(mode, function(){
 		var menuModal = document.getElementById("ModalWindow");
 		if (mode === "edit") {
 			// 編集モードのとき
+			document.getElementById("taskId")      .value = taskId;
 			document.getElementById("taskName")    .value = taskName;
 			document.getElementById("taskContents").value = taskContents;
 			document.getElementById("taskDeadline").value = taskDeadline;
@@ -13,6 +16,7 @@ function openModal(taskName, taskContents, taskDeadline, taskStatus, taskPriorit
 			document.getElementById("taskAssignee").value = taskAssignee;
 		}else {
 			// 追加モードのとき
+			document.getElementById("taskId")      .value = "";
 	        document.getElementById("taskName")    .value = "";
 	        document.getElementById("taskContents").value = "";
 	        document.getElementById("taskDeadline").value = "";
@@ -28,8 +32,7 @@ function openModal(taskName, taskContents, taskDeadline, taskStatus, taskPriorit
 	});
 }
 
-// TaskModal.jspをロードする関数
-// TODO:この関数はまだちゃんと理解できたわけではない...
+// TaskModal.jspを非同期でロードする関数
 function loadTaskModal(mode, callback) {
     var rXmlReq = new XMLHttpRequest();
     rXmlReq.open('POST', '/TaskManagementSystem/TaskModal.jsp?mode=' + encodeURIComponent(mode), true);

@@ -20,6 +20,7 @@
     <h3 class="title">${title}</h3>
     <form action="${action}" method="post">
     	<span>
+    	    <input type="hidden" id="taskId" name="taskId" value="${param.taskId}"/>
 	        <label for="taskName">タスク名</label><br>
 	        <input type="text" id="taskName" name="taskName"><br>  
 	        <label for="taskContents">内容</label><br>

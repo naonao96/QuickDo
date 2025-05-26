@@ -13,7 +13,8 @@
 	<div class="header">
 		<h3 class="title">現在のタスク一覧</h3>
 		<h3 class="loginDisp">
-			${userName}さん:本日もお疲れ様です。
+		    <c:set var="userInfo" value="${sessionScope.userInfo}"/>
+			${userInfo.userName}さん:本日もお疲れ様です。
 		</h3>
     </div>
     <table>
@@ -28,9 +29,10 @@
             </tr>
         </thead>
         <tbody>
-        	<c:forEach items="${taskList}" var="task">
+        	<c:forEach items="${taskInfo}" var="task">
             	<tr onclick="
             	openModal(
+            	 '${task.taskId}',
             	 '${task.taskName}',
             	 '${task.taskContent}',
             	 '${task.taskDeadline}',
@@ -61,7 +63,7 @@
         </tbody>
     </table>
     <br>
-    <button onclick="openModal('','','','','','','add')" type="submit"class="btn-right-design">+ Add Task</button>
+    <button onclick="openModal('','','','','','','','add')" type="submit"class="btn-right-design">+ Add Task</button>
     <!-- Modal画面をTaskModal.jspから下記にロードする -->
     <div id="ModalWindow" class="modal">
     </div>

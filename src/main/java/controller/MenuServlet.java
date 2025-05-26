@@ -23,10 +23,7 @@ public class MenuServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		request.setCharacterEncoding("UTF-8");
-		response.setContentType("text/html; charset=UTF-8");
-		response.setCharacterEncoding("UTF-8");
 		
 		if(request.getParameter("mode") != null) {
 			request.getRequestDispatcher("/TaskModal.jsp").forward(request, response);
@@ -41,18 +38,6 @@ public class MenuServlet extends HttpServlet {
 			//ログイン失敗
 			request.setAttribute("errorMessage", UtilityTools.LOGIN_ERROR);
 			request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
-		}
-		
-		try {			
-			//タスクの取得機能
-			//List<TaskInfoBeans> taskList = new ArrayList<TaskInfoBeans>();
-			
-			//タスクの登録機能
-			
-			//タスクの更新機能
-			
-		} catch (Exception e) {
-			e.printStackTrace();
 		}
 	}
 

@@ -38,13 +38,10 @@ public class LoginServlet extends HttpServlet {
 		 *  doPostメソッドの中で呼び出すという謎の処理が記述されていた
 		 */
 		request.setCharacterEncoding("UTF-8");
-		response.setContentType("text/html; charset=UTF-8");
-		response.setCharacterEncoding("UTF-8");
 		
 		TaskManagementDAO dao = new TaskManagementDAO();
-		
 		UserInfoBeans userInfo = new UserInfoBeans();
-		List<TaskInfoBeans> taskList = new ArrayList<TaskInfoBeans>();
+		List<TaskInfoBeans> taskInfo = new ArrayList<TaskInfoBeans>();
 
 		try 
 		{
@@ -53,7 +50,7 @@ public class LoginServlet extends HttpServlet {
 			// タスク情報初期表示データ取得
 			// (タスクデータはユーザIDに紐づいている（親子関係）)
 			if (userInfo != null) 
-				taskList = dao.revTaskList(userInfo.getUserId());
+				taskInfo = dao.revTaskList(userInfo.getUserId());
 		}
 		catch(Exception e) 
 		{
@@ -66,17 +63,15 @@ public class LoginServlet extends HttpServlet {
 		{
 			// ログインに成功した場合
 			HttpSession session = request.getSession();
-			session.setAttribute("userName", userInfo.getUserName());
-			request.setAttribute("taskList", taskList);
-			RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/menu.jsp");
-			rd.forward(request, response);
+			session.setAttribute("userInfo", userInfo);
+			request.setAttribute("taskInfo", taskInfo);
+			request.getRequestDispatcher("WEB-INF/menu.jsp").forward(request, response);
 		}
 		else 
 		{
 			// ログインに失敗した場合
 			request.setAttribute("error", UtilityTools.LOGIN_ERROR);
-			RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
-			rd.forward(request, response);
+			request.getRequestDispatcher("login.jsp").forward(request, response);
 		}
 		
 	}

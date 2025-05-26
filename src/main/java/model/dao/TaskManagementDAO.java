@@ -101,7 +101,14 @@ public class TaskManagementDAO {
 	}
 	
 	// タスク新規登録を行う
-	public boolean insTaskInfo(UserInfoBeans userInfo, TaskInfoBeans taskInfo) 
+	public boolean insTaskInfo(
+			String userId,
+			String taskName,
+			String taskContents,
+			String taskDeadline,
+			String taskStatus,
+			String taskPriority,
+			String taskAssignee) 
 	{
 		ConnectionManger connectionManger = new ConnectionManger(_url, _User, _Password);
 		try(Connection con = connectionManger.getConnection();)
@@ -115,13 +122,13 @@ public class TaskManagementDAO {
 			
 			PreparedStatement pstmt = con.prepareStatement(query);
 			
-			pstmt.setString(1, userInfo.getUserId());
-			pstmt.setString(2, taskInfo.getTaskName());
-			pstmt.setString(3, taskInfo.getTaskContent());
-			pstmt.setDate  (4, (java.sql.Date)taskInfo.getTaskDeadline());
-			pstmt.setString(5, taskInfo.getTaskStatus());
-			pstmt.setString(6, taskInfo.getTaskPriority());
-			pstmt.setString(7, taskInfo.getTaskAssignee());
+			pstmt.setString(1, userId);
+			pstmt.setString(2, taskName);
+			pstmt.setString(3, taskContents);
+			pstmt.setString(4, taskDeadline);
+			pstmt.setString(5, taskStatus);
+			pstmt.setString(6, taskPriority);
+			pstmt.setString(7, taskAssignee);
 			
 			int result = pstmt.executeUpdate();
 			
@@ -140,8 +147,51 @@ public class TaskManagementDAO {
 	}
 	
 	// タスク更新登録を行う
-	public boolean updTaskInfo() 
+	public boolean updTaskInfo(
+			String taskId,
+			String userId,
+			String taskName,
+			String taskContents,
+			String taskDeadline,
+			String taskStatus,
+			String taskPriority,
+			String taskAssignee) 
 	{
+	ConnectionManger connectionManger = new ConnectionManger(_url, _User, _Password);
+		try(Connection con = connectionManger.getConnection();)
+		{
+			String query = UtilityTools.readFile("/sql/updateTaskInfo.sql");
+			
+			if (query == null) {
+				System.out.println("SQLファイルの読み込みに失敗しました。");
+				return false;
+			}
+			
+			PreparedStatement pstmt = con.prepareStatement(query);
+			
+			// パラメータの設定
+			pstmt.setString(1, userId);
+			pstmt.setString(2, taskName);
+			pstmt.setString(3, taskContents);
+			pstmt.setString(4, taskDeadline);
+			pstmt.setString(5, taskStatus);
+			pstmt.setString(6, taskPriority);
+			pstmt.setString(7, taskAssignee);
+			pstmt.setString(8, taskId);
+			
+			int result = pstmt.executeUpdate();
+			
+			if (result > 0) {
+				return true;
+			}
+			
+			con.close();
+		}
+		catch(Exception e) 
+		{
+			e.printStackTrace();
+			System.out.println("データ更新失敗");
+		}
 		return false;
 	}
 	
