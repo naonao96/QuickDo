@@ -5,21 +5,22 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>タスク一覧</title>
+	<title>QuickDo：タスク一覧</title>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<script type="text/javascript" src="js/modalScript.js"></script>
 	<script type="text/javascript" src="js/menuScript.js"></script>
 </head>
 <body>	
-	<div class="header">
-		<h3 class="title">現在のタスク一覧</h3>
-		<h3 class="loginDisp">
-		    <c:set var="userInfo" value="${sessionScope.userInfo}"/>
-			${userInfo.userName}さん:本日もお疲れ様です。
-		</h3>
+	<div class="menu-header">
+		<div class="menu-title">Dashboard</div>
+		<button onclick="logout()" type="submit"class="btn-left-design">Sign Out</button>
     </div>
+	<h3 class="loginDisp">
+	    <c:set var="userInfo" value="${sessionScope.userInfo}"/>
+		${userInfo.userName}さん:本日もお疲れ様です。
+	</h3>
     <table>
-        <thead>
+        <thead class="task-header">
             <tr>
                 <th>タスク名</th>
                 <th>内容</th>
@@ -64,9 +65,8 @@
         </tbody>
     </table>
     <br>
-    <div class="container">
-        <button onclick="openModal('','','','','','','','add')" type="submit"class="btn-right-design">タスク追加</button>
-    	<button onclick="logout()" type="submit"class="btn-left-design">ログアウト</button>
+    <div class="">
+    	<button onclick="openModal('','','','','','','','add')" type="submit"class="btn-right-design">Add Task</button>
     </div>
     <!-- Modal画面をTaskModal.jspから下記にロードする -->
     <div id="ModalWindow" class="modal">

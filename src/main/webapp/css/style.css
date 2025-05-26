@@ -13,19 +13,37 @@ th, td {
     text-align: left;
 	font-size: 15px;
 }
-span {
-	font-size: 18px;
-	font-weight: bold;
+thead.task-header {
+    background-color: #FCF7CD;
+    font-weight: bold;
+}
+h2.login-title{
+	display: flex;
+	justify-content: center;
+	font-weight: 900;
+	font-size: 30px;
+}
+.menu-title{
+	font-weight: 900;
+	font-size: 30px;
 }
 .error {
 	color: red;
 	font-weight: bold;
 }
-.header{
-    display: flex;
-    justify-content: space-between;
+.sign-in-locate{
+	justify-content: space-around;
+	align-content: space-around;
 	align-items: center;
-	padding: 10px;
+}
+.sign-out-locate{
+	justify-content: right;
+	align-content: space-around;
+}
+.menu-header{
+	display: flex;
+	justify-content: space-between;
+	align-content: space-between;
 }
 .title{
 	color: #000000;
@@ -62,40 +80,59 @@ span {
 	margin: 50px 50px 50px;
 	border-radius: 5%;
 }
+.btn-submit-design{
+	margin-top:10px;
+}
+.container{
+	display: flex;
+	justify-content: space-around;
+	align-content: space-around;
+}
 .close {
     color: #aaa;
     float: right;
     font-size: 28px;
     font-weight: bold;
 }
-.close:hover,.close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
+.login-btn{
+	background-color: #0066CC;
+	border: 2px solid #0066CC;
+	margin-top: 50px;
+	height: 40px;
+	border-radius: .2rem;
 }
-.btn-right-design, .btn-left-design{
+.btn-right-design{
+	background-color: #D81F24;
+	border: 2px solid #D81F24;
+	margin-bottom: 10px;
+	border-radius: .9rem;
+}
+.btn-left-design{
+	background-color: #0066CC;
+	border: 2px solid #0066CC;
+	margin-bottom: 10px;
+	border-radius: .2rem;
+}
+.sign-in-locate, .sign-out-locate{
+	display: flex;
+	padding: 10px;
+	box-lines: single;
+}
+.btn-right-design, .btn-left-design, .login-btn{
 	color: white;
 	box-shadow: 0 3px 5px rgba(0, 0, 0, .3);
-	background-color: #eb6100;
-	border: 2px solid #b84c00;
 	padding: 0.5rem 0.5rem;
 	cursor: pointer;
 	transition: all .3s;
 	text-align: center;
 	vertical-align: middle;
 	letter-spacing:.1rem;
-	border-radius: .5rem;
 }
-.btn-right-design{
-	
+.close:hover,.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
 }
-.btn-left-design{
-
-}
-.btn-submit-design{
-	margin-top:10px;
-}
-.container{
-	display: flex;
-	justify-content: space-between;
+.login-controller, .login-btn{
+	width: 300px;
 }
