@@ -23,7 +23,8 @@
 							<p class="error">${errorMessage}</p>
 						</c:when>
 					</c:choose>
-					<input type="submit" class="login-btn" value="Sign In">
+					<input type="submit" class="login-btn" value="Sign In"><br>
+					Don't have an account? <a href="http://localhost:8080/TaskManagementSystem/login">Sign Up</a>
 				</div>
 			</form>
 		</div>
