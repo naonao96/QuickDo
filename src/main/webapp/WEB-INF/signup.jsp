@@ -10,7 +10,7 @@
 		<script type="text/javascript" src="js/signupScript.js"></script>
 	</head>
 	<body class="sign-in-locate">
-		<form id="signupForm" onsubmit="signUp()">
+		<form id="signupForm">
 		    <h2 class="login-title">QuickDo</h2>
 	        <label for="name">User Name</label>
 	        <br>
@@ -31,6 +31,7 @@
 	            </c:when>
 	        </c:choose>
 	        <input type="submit" class="login-btn" value="Sign Up"><br>
-	        <a href="login">Return to the login screen</a>
+	    </form>
+        <a href="login">Return to the login screen</a>
 	</body>
 </html>
