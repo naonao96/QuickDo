@@ -1,9 +1,24 @@
+window.onload = function(){
+	document.getElementById("signupForm").addEventListener("submit", function(event){
+		event.preventDefault();
+		signUp();
+	})
+}
+
+//アカウント登録確認および登録完了確認を行う
 function signUp(){
 	if (confirm("アカウントを登録しますか？")){
-		const formData = new FormData(document.getElementById("signupForm"));
+		const jsonSignUpData = 
+		{
+			"name": document.getElementById("name").value,
+			"mail": document.getElementById("mail").value,
+			"password": document.getElementById("password").value
+		}
+	    // TODO: レスポンスからエラーメッセージを取得してAlertで表示する
 		fetch('sign-up', {
 			method: "POST",
-			body: formData,
+			headers: {"Content-Type": "appliction/json"},
+			body: JSON.stringify(jsonSignUpData)
 		})
 		.then(response => {
 			if (response.ok) {
