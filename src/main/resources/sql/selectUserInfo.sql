@@ -1,1 +1,1 @@
-SELECT * FROM mst_users WHERE  MAIL_ADDRESS = ? AND PASSWORD = ?;	
+SELECT * FROM mst_users WHERE  MAIL_ADDRESS = ?;

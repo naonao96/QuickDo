@@ -13,6 +13,7 @@ import org.json.JSONObject;
 
 import model.dao.TaskManagementDAO;
 import model.entity.UserInfoBeans;
+import util.UtilityTools;
 
 @WebServlet("/sign-up")
 public class SignUpServlet extends HttpServlet {
@@ -32,25 +33,26 @@ public class SignUpServlet extends HttpServlet {
 		try {
 			TaskManagementDAO dao = new TaskManagementDAO();
 			BufferedReader reqReader = request.getReader();
-			StringBuilder jsonBuilder = new StringBuilder();
 			String line;
 			
 			// TODO: レスポンスでアカウント登録の失敗やアカウント登録済みのエラーメッセージを返すようにする
+			// リクエスト自体がnullの場合はログイン画面にリダイレクト
 			if (reqReader == null) {
-				response.sendRedirect("login");
-				response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+				setResponse(response, HttpServletResponse.SC_BAD_REQUEST, UtilityTools.SERVER_ERROR);
 				return;
 			}
 			
+			// リクエストボディからJSONを読み込む
+			StringBuilder jsonBuilder = new StringBuilder();
 			while ((line = reqReader.readLine()) != null) {
 				jsonBuilder.append(line);
 			}
 	        JSONObject json = new JSONObject(jsonBuilder.toString());
 	        
-	        // アカウントが既に登録されているか確認
+	        // アカウントが既に登録されているか確認/登録済みならエラーメッセージを返す
 	        UserInfoBeans userInfo = dao.revUserSertificate(json.getString("mail"), json.getString("password"));
 	        if (userInfo != null) {
-	        	response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+				setResponse(response, HttpServletResponse.SC_CONFLICT, UtilityTools.CREATED_ACCOUNT);
 	        	return;
 	        }
 	        
@@ -62,18 +64,28 @@ public class SignUpServlet extends HttpServlet {
 					);
 			
 			if (insRes) {
-				response.setStatus(HttpServletResponse.SC_OK);
-				return;
+				setResponse(response, HttpServletResponse.SC_OK, UtilityTools.FINISHED_ACCOUNT);
 			}
 			else {
-				response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-				return;
+				setResponse(response, HttpServletResponse.SC_BAD_REQUEST, UtilityTools.SERVER_ERROR);
 			}
 			
 		}catch (Exception e) {
 			System.out.println(e.getMessage());
-			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+			setResponse(response, HttpServletResponse.SC_BAD_REQUEST, UtilityTools.SERVER_ERROR);
 			return;
 		}
+	}
+	
+	// レスポンスの設定を行うメソッド（引数にレスポンスメッセージを渡す）
+	private static void setResponse(HttpServletResponse response,int status,String message) 
+			throws IOException {
+		response.setContentType("application/json; charset=UTF-8");
+		response.setStatus(status);
+		
+		JSONObject jsonResponse = new JSONObject();
+		jsonResponse.put("message", message);
+		response.getWriter().write(jsonResponse.toString());
+		response.getWriter().flush();
 	}
 }
