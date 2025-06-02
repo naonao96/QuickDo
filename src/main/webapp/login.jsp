@@ -13,11 +13,11 @@
 			<h2 class="login-title">QuickDo</h2>
 			<label for="mail">Email</input>
 			<br>
-			<input type="text" id="mail" class="login-controller" name="mail" required="required">
+			<input type="email" id="mail" class="login-controller" name="mail" required="required">
 			<br>
 			<label for="password">Password</input>
 			<br>
-			<input type="text" id="password" class="login-controller" name="password" required="required">
+			<input type="password" id="password" class="login-controller" name="password" required="required">
 			<br>
 			<c:if test="${not empty requestScope.error}">
                 <c:set var="errorMessageRequest" value="${requestScope.error}"/>

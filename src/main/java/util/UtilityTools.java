@@ -13,6 +13,13 @@ public class UtilityTools {
 	public static final String DATA_FETCH_ERROR = "データの取得に失敗しました";
 	public static final String SESSION_ERROR = "セッションが切れました。再度ログインしてください。";
 	public static final String SIGNUP_ERROR = "アカウントの作成に失敗しました。";
+	public static final String SERVER_ERROR = "サーバーエラーが発生しました。";
+	public static final String CREATED_ACCOUNT = "アカウントは既に登録されています。";
+	
+	/**
+	 * 正常なメッセージ一覧
+	 */
+	public static final String FINISHED_ACCOUNT = "アカウントの作成が完了しました。";
 	
 	/**
 	 * 指定されたファイルパスの内容を読み込み、文字列として返します。

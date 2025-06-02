@@ -35,7 +35,6 @@ public class TaskManagementDAO {
 			
 			PreparedStatement pstmt = con.prepareStatement(query);
 			pstmt.setString(1, mail);
-			pstmt.setString(2, password);
 			
 			// 一致するユーザの取得を行います
 			ResultSet ret = pstmt.executeQuery();
@@ -46,13 +45,17 @@ public class TaskManagementDAO {
 				userInfo.setMail    (ret.getString("mail_address"));
 				userInfo.setPassword(ret.getString("password"));
 			}
-			
+						
 			con.close();
+			
+			if (userInfo.getUserId() == "") {
+				return null;
+			}
 		}
 		catch(Exception e) 
 		{
-			e.printStackTrace();
-			System.out.println("データ取得失敗");
+			System.out.println(e.getMessage());
+			return null;
 		}
 		return userInfo;
 	}
