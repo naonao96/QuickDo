@@ -2,3 +2,6 @@ target/
 build/
 .settings/
 .classpath
+.env
+docker-compose.yml
+dockerfile
