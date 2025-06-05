@@ -13,7 +13,7 @@ import util.UtilityTools;
 public class TaskManagementDAO {
 	
 	// DB接続URL
-	private String _url = "jdbc:mysql://localhost:3306/taskdb?useSSL=false&serverTimezone=UTC";
+	private String _url = "jdbc:mysql://" + System.getenv("DB_HOST") + "localhost:3306/taskdb?useSSL=false&serverTimezone=UTC";
 	// DB接続ユーザ名
 	private String _User = "taskUser";
 	// DB接続パスワード
