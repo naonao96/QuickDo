@@ -1,1 +1,0 @@
-SELECT * FROM mst_users WHERE  MAIL_ADDRESS = ? AND PASSWORD = ?;	

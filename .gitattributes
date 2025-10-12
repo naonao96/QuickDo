@@ -2,3 +2,22 @@
 *.js linguist-language=javascript
 *.css linguist-language=css
 *.html linguist-language=html
+# Eclipse関連
+.metadata/
+.classpath
+.project
+.settings/
+
+# ビルド成果物
+bin/
+target/
+*.class
+*.jar
+*.war
+*.ear
+
+# OSやIDEの一時ファイル
+*.log
+*.tmp
+.DS_Store
+Thumbs.db
